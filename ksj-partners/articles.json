@@ -1,40 +1,42 @@
-{
-  "items": [
-    {
-      "category": "case",
-      "badge": "판례",
-      "title": "조합원 지위승계 시 매수인의 분양권 취득 요건 — 대법원 2025다213504",
-      "date": "2025-05-12"
-    },
-    {
-      "category": "law",
-      "badge": "법령",
-      "title": "투기과열지구 조합원 입주권 양도 제한 요건 및 예외사유 분석",
-      "date": "2025-04-08"
-    },
-    {
-      "category": "case",
-      "badge": "판례",
-      "title": "비례율 변경에 따른 청산금 증액 — 취득세 수정신고 의무 (도시정비법 제89조)",
-      "date": "2025-03-21"
-    },
-    {
-      "category": "news",
-      "badge": "업무사례",
-      "title": "학교용지부담금 부과처분 이의신청 성공 — 인창C구역 재개발",
-      "date": "2025-02-14"
-    },
-    {
-      "category": "case",
-      "badge": "판례",
-      "title": "수용재결 보상금 산정 기준 관련 행정법원 최신 판결 동향",
-      "date": "2025-01-30"
-    },
-    {
-      "category": "law",
-      "badge": "법령",
-      "title": "2025년 도시정비법 주요 개정 — 조합원 자격·분양대상자 기준 변경",
-      "date": "2025-01-06"
-    }
-  ]
-}
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "admin/uploads"
+public_folder: "/admin/uploads"
+
+locale: "ko"
+
+collections:
+  - name: "articles"
+    label: "판례·법령 이야기"
+    files:
+      - name: "articles"
+        label: "게시글 목록"
+        file: "articles.json"
+        fields:
+          - label: "게시글 목록 (맨 위가 홈페이지에서도 맨 앞에 나옵니다)"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.badge}} - {{fields.title}}"
+            fields:
+              - label: "카테고리"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "판례", value: "case" }
+                  - { label: "법령", value: "law" }
+                  - { label: "업무사례", value: "news" }
+              - label: "뱃지 표시명"
+                name: "badge"
+                widget: "string"
+                default: "판례"
+              - label: "제목"
+                name: "title"
+                widget: "string"
+              - label: "날짜"
+                name: "date"
+                widget: "datetime"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                format: "YYYY-MM-DD"
