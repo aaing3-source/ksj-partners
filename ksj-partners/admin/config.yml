@@ -1,0 +1,42 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "admin/uploads"
+public_folder: "/admin/uploads"
+
+locale: "ko"
+
+collections:
+  - name: "articles"
+    label: "판례·법령 이야기"
+    files:
+      - name: "articles"
+        label: "게시글 목록"
+        file: "articles.json"
+        fields:
+          - label: "게시글 목록 (맨 위가 홈페이지에서도 맨 앞에 나옵니다)"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.badge}} - {{fields.title}}"
+            fields:
+              - label: "카테고리"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "판례", value: "case" }
+                  - { label: "법령", value: "law" }
+                  - { label: "업무사례", value: "news" }
+              - label: "뱃지 표시명"
+                name: "badge"
+                widget: "string"
+                default: "판례"
+              - label: "제목"
+                name: "title"
+                widget: "string"
+              - label: "날짜"
+                name: "date"
+                widget: "datetime"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                format: "YYYY-MM-DD"
